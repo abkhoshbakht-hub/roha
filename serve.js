@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Static preview server for the Raha theme - zero dependencies.
- * Serves the standalone build (roha.html) at the root.
+ * Static preview server - zero dependencies.
+ * Serves ./public (the deployable static site).
  *
  * Usage: node serve.js [port]
  *
- * Note: this previews the STATIC build only. The WordPress theme itself
- * (wp-content/) needs a WordPress install to run - see README.md.
+ * Note: this previews the STANDALONE build only. The WordPress theme in
+ * ./src/wp-content needs a WordPress install to run - see README.md.
  */
 'use strict';
 
@@ -15,9 +15,8 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-const ROOT = __dirname;
-const ENTRY = 'roha.html';
-const PORT = Number(process.argv[2] || process.env.PORT || 3000);
+const ROOT = path.join(__dirname, 'public');
+const PORT = Number(process.argv[2] || process.env.PORT || 3002);
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -56,8 +55,8 @@ const server = http.createServer((req, res) => {
     return send(res, 400, 'Bad Request', { 'Content-Type': 'text/plain; charset=utf-8' });
   }
 
-  if (pathname === '/' || pathname === '/index.html') pathname = '/' + ENTRY;
-  if (pathname.endsWith('/')) pathname += ENTRY;
+  if (pathname === '/' || pathname === '/index.html') pathname = '/index.html';
+  if (pathname.endsWith('/')) pathname += 'index.html';
 
   const target = path.resolve(ROOT, '.' + path.posix.normalize(pathname));
   if (target !== ROOT && !target.startsWith(ROOT + path.sep)) {
@@ -81,7 +80,8 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, '127.0.0.1', () => {
   console.log('  Raha (static build)  ->  http://localhost:' + PORT);
   console.log('  serving:             ' + ROOT);
-  console.log('  WordPress theme:     wp-content/themes/roha-theme/');
+  console.log('  WordPress theme:     src/wp-content/themes/roha-theme/');
+  console.log('  deploy:              upload the contents of ./public to your host');
   console.log('  press Ctrl+C to stop');
 });
 

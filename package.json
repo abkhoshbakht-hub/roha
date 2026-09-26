@@ -1,13 +1,14 @@
 {
   "name": "roha",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Raha - software site. Custom WordPress theme + mu-plugin, plus a standalone static build",
+  "description": "Raha - software site. Static build (public/) plus custom WordPress theme and mu-plugin (src/wp-content)",
   "scripts": {
-    "dev": "node serve.js 3000",
-    "start": "node serve.js 3000",
+    "dev": "node serve.js 3002",
+    "start": "node serve.js 3002",
     "serve": "node serve.js",
-    "lint:php": "php -l wp-content/themes/roha-theme/functions.php"
+    "check": "node --check serve.js && node --check public/assets/js/main.js",
+    "lint:php": "php -l src/wp-content/themes/roha-theme/functions.php && php -l src/wp-content/mu-plugins/rh-plugin.php"
   },
   "keywords": [
     "wordpress",
