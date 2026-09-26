@@ -1,0 +1,19 @@
+{
+  "name": "roha",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Raha - software site. Custom WordPress theme + mu-plugin, plus a standalone static build",
+  "scripts": {
+    "dev": "node serve.js 3000",
+    "start": "node serve.js 3000",
+    "serve": "node serve.js",
+    "lint:php": "php -l wp-content/themes/roha-theme/functions.php"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "mu-plugin",
+    "static-site"
+  ],
+  "license": "UNLICENSED"
+}
