@@ -1,0 +1,43 @@
+# ===== WordPress core (never commit - download from wordpress.org) =====
+/wp-admin/
+/wp-includes/
+/wp-content/plugins/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/uploads/sites/
+/wp-content/languages/
+
+# wp-config contains DB credentials
+wp-config.php
+wp-config-docker.php
+wp-config-local.php
+wp-config-*.php
+!.env.example
+
+# ===== Node / build =====
+node_modules/
+.next/
+/build
+/out/
+*.tsbuildinfo
+
+# ===== OS / editor =====
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# ===== Logs / secrets =====
+*.log
+npm-debug.log*
+*.bak
+*.sql
+*.sqlite
+*.db
+.env
+.env.*
+!.env.example
+*.pem
+*.key
